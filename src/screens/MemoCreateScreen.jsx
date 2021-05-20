@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput, Alert } from 'react-native';
+import firebase from 'firebase';
 
 import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
@@ -7,6 +8,21 @@ import KeyboardSafeView from '../components/KeyboardSafeView';
 
 export default function MemoCreateScreen(props) {
   const { navigation } = props;
+
+  function handlePress() {
+    const db = firebase.firestore();
+    const ref = db.collection('memos');
+    ref.add({
+      bodyText: 'Hello',
+    })
+      .then((docRef) => {
+        navigation.goBack();
+      })
+      .catch((error) => {
+        Alert.alert('Error', error);
+      });
+  }
+
   return (
     <KeyboardSafeView style={styles.container}>
       <View style={styles.inputContainer}>
@@ -14,7 +30,7 @@ export default function MemoCreateScreen(props) {
       </View>
       <CircleButton
         name='check'
-        onPress={ () => { navigation.goBack();} }
+        onPress={handlePress}
       />
     </KeyboardSafeView>
 
