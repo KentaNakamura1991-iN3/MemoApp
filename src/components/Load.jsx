@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ActivityIndicator} from 'react-native';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import { bool } from 'prop-types';
 
 export default function Load(props) {
@@ -20,7 +20,7 @@ Load.propTypes = {
   isLoading: bool,
 };
 
-Load.defaultProp = {
+Load.defaultProps = {
   isLoading: false,
 };
 
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
     zIndex: 5,
   },
   inner: {
-    marginBottom: 80
-  }
+    marginBottom: 80,
+  },
 });

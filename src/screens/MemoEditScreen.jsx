@@ -3,10 +3,9 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import { shape, string, Alert } from 'prop-types';
 import firebase from 'firebase';
 
-import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
 import KeyboardSafeView from '../components/KeyboardSafeView';
-import { translateErrors} from '../utils';
+import { translateErrors } from '../utils';
 
 export default function MemoEditScreen(props) {
   const { navigation, route } = props;
@@ -21,7 +20,7 @@ export default function MemoEditScreen(props) {
       ref.set({
         bodyText: body,
         updatedAt: new Date(),
-      }, {merge: true })
+      }, { merge: true })
         .then(() => {
           navigation.goBack();
         })
@@ -39,37 +38,37 @@ export default function MemoEditScreen(props) {
           value={body}
           multiline
           style={styles.input}
-          onChangeText={(text) => {setBody(text);} }
+          onChangeText={(text) => { setBody(text); }}
         />
       </View>
       <CircleButton
-        name='check'
+        name="check"
         onPress={handlePress}
       />
     </KeyboardSafeView>
 
-  )
+  );
 }
 
 MemoEditScreen.propTypes = {
   route: shape({
-      params: shape({ id: string, bodyText: string }),
+    params: shape({ id: string, bodyText: string }),
   }).isRequired,
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex:1
+    flex: 1,
   },
   inputContainer: {
     paddingHorizontal: 27,
     paddingVertical: 32,
-    flex:1,
+    flex: 1,
   },
   input: {
-    flex:1,
+    flex: 1,
     textAlignVertical: 'top',
     fontSize: 16,
     lineHeight: 24,
-  }
-})
+  },
+});
